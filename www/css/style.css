@@ -1,0 +1,65 @@
+body{
+overflow: hidden;
+}
+
+#startpage_button2{
+top:200px;
+padding:5px;
+border-radius: 10px;
+position: relative;
+overflow: hidden;
+}
+
+#header{
+background-color: rgb(128,0,0);
+}
+#header_text{
+font-family: candara;
+font-size: 23px;
+padding: 10px auto;
+font-weight:600;
+text-align:center;
+}
+
+#startpage_button{
+
+top:70px;
+padding:5px;
+border-radius: 10px;
+position: relative;
+overflow: hidden;
+}
+
+#login_form{
+padding:45px 0 0 0;
+}
+
+#signup_community_form{
+padding:45px 0 0 0;
+}
+
+#signup_individual_form{
+padding:45px 0 0 0;
+}
+
+#home_community{
+padding:45px 0 0 0;
+}
+
+button:hover {
+    background-color: yellow;
+}
+
+#home_community_button{
+padding-left:5px;
+padding-right:5px;
+padding-bottom:5%;
+}
+
+#offline_donor_entry{
+padding:45px 0 0 0;
+}
+
+#create_event_page{
+padding:45px 0 0 0;
+}

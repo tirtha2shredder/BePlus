@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <script src="jquery/jquery-1.11.1.min.js"></script>
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="lib/ngCordova/dist/ng-cordova.js"></script>
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+    <script src="js/signupCommunity.js"></script>
+    <script src="js/validate.js"></script>
+    <script src="js/alertDialog.js"></script>
+
+  </head>
+  <body ng-app="starter">
+  <ion-pane>
+
+   <ion-header-bar class="bar-assertive" id="header">
+
+	    <button onClick="window.location.href = 'signup_category.html'" class="button icon ion-ios-arrow-back button-clear button-light" style="float:left;padding:3px 0px 5px 0px;" ></button>
+        <h1 class="title" id="header_text">Be Positive</h1>
+		<button class="button icon ion-waterdrop button-clear button-light"></button>
+	  </ion-header-bar>
+
+	  <div class="bar bar-subheader">
+      <h2 class="title">Sign up as Community</h2>
+      </div>
+	  <br/>
+
+   <ion-content >
+
+
+	  <!--the form -->
+    <div class="list" id="signup_individual_form">
+		<label class="item item-input item-floating-label">
+			<span class="input-label">Name of Community</span>
+			<input type="text" placeholder="Name of Community" id="registerNameOrg">
+		</label>
+
+		<label class="item item-input item-floating-label">
+			<span class="input-label">Email</span>
+			<input type="email" placeholder="Email" id="registerEmailOrg">
+		</label>
+
+		<label class="item item-input item-floating-label">
+			<span class="input-label">Password</span>
+			<input type="password" placeholder="Password" id="registerPasswordOrg">
+		</label>
+
+		<label class="item item-input item-floating-label">
+			<span class="input-label">Confirm Password</span>
+			<input type="password" placeholder="Confirm Password" id="registerConfirmPasswordOrg">
+		</label>
+
+		<label class="item item-input item-floating-label">
+			<span class="input-label">Phone No.</span>
+			<input type="number" placeholder="Phone No." id="registerMobileOrg">
+		</label>
+
+        <label class="item item-input item-floating-label">
+			<span class="input-label">Address</span>
+			<textarea type="text" placeholder="Address" id="registerAddressOrg"></textarea>
+		</label>
+
+		<div class="item item-input-inset">
+			<label class="item-input-wrapper">
+				<input type="text" placeholder="Locality" id="registerLocalityOrg" readonly>
+			</label>
+		<button class="button icon ion-location" id="getLocalityBtn" onclick="navigator.geolocation.getCurrentPosition(onSuccess, onError);"></button>     <!--location button-->
+		</div>
+
+		<div style="padding:5px;" >
+		<button class="button button-block button-assertive" style="background-color: rgb(128,0,0);" onclick="signUpCommunity()">Create Account</button>
+     </div>
+
+	</div>
+
+
+   </ion-content>
+</ion-pane>
+
+
+
+  </body>
+
+  <!-- Reverse GeoCoding Inline Script -->
+  <script>
+    var onSuccess = function(position) {
+
+      var latitude = position.coords.latitude;
+      var longitude = position.coords.longitude ;
+
+      var rootURL = "https://maps.googleapis.com/maps/api/geocode/json?latlng=";
+      var latlng = latitude + "," + longitude;
+      var apiKey = "&key=AIzaSyBvkZzhP8cS2-8rhhf3s8202p9LhQmrRuI"
+
+      var geoCodingURL = rootURL + latlng + apiKey;
+
+      //AJAX Call
+      $.ajax({
+          type: "GET",
+          url: geoCodingURL,
+          dataType: "json",
+          success: function (data){
+
+
+          var response = JSON.stringify(data)
+          var results = JSON.stringify(JSON.parse(response).results[0]);
+
+          var addressComponents = JSON.parse(response).results[0].address_components[1].long_name
+
+          //alert(addressComponents)
+
+			// Assign To Locality Input
+			$('#registerLocalityOrg').val(addressComponents)
+          },
+
+          error: function(data){
+			        alert("Error. Try Again")
+          },
+			timeout: 6000
+        });
+
+    }
+
+// onError Callback receives a PositionError object
+function onError(error) {
+    alert('code: '    + error.code    + '\n' +
+          'message: ' + error.message + '\n');
+}
+
+
+  </script>
+</html>

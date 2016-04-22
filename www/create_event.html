@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+      <!-- jQuery & jQuery Mobile -->
+    <script src="jquery/jquery-1.11.1.min.js"></script>
+    <script>
+    $(document).bind('mobileinit',function(){
+        $.mobile.changePage.defaults.changeHash = false;
+        $.mobile.hashListeningEnabled = false;
+        $.mobile.pushStateEnabled = false;
+    });
+    </script>
+	  <script src="jquery/jquery.mobile-1.4.5.min.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+    <script src="js/createEvent.js"></script>
+    <script src="js/validate.js"></script>
+    <script src="js/alertDialog.js"></script>
+
+  </head>
+  <body ng-app="starter">
+  <ion-pane>
+
+   <ion-header-bar class="bar-assertive" id="header">
+
+	    <button onClick="parent.location='Home_community.html'" class="button icon ion-ios-arrow-back button-clear button-light" style="float:left;padding:3px 0px 5px 0px;" ></button>
+        <h1 class="title" id="header_text">Be Positive</h1>
+		<button class="button icon ion-waterdrop button-clear button-light"></button>
+	  </ion-header-bar>
+
+	  <div class="bar bar-subheader">
+      <h2 class="title">Create New Event</h2>
+      </div>
+	  <br/>
+
+   <ion-content style="overflow: hidden;">
+
+    <!--the form -->
+    <div class="list" id="create_event_page">
+		<label class="item item-input item-floating-label">
+			<span class="input-label">Event Name</span>
+			<input type="text" placeholder="Event Name" id="eventName">
+		</label>
+
+		<label class="item item-input item-floating-label">
+		  <span class="input-label">Venue Of Event</span>
+			<textarea type="text" placeholder="Venue Of Event" id="eventVenue"></textarea>
+		</label>
+
+	<label class="item item-input item-floating-label">
+			<span class="input-label">Date (DD/MM/YYYY)</span>
+			<input type="text" placeholder="Date as (DD/MM/YYYY)" id="eventDate">
+	</label>
+
+		<label class="item item-input item-select">
+			<div class="input-label">Time</div>
+				<select id="eventTime">
+				<option>01:00</option>
+				<option>02:00</option>
+				<option>03:00</option>
+				<option>04:00</option>
+				<option>05:00</option>
+				<option>06:00</option>
+				<option>07:00</option>
+				<option>08:00</option>
+				<option>09:00</option>
+				<option>10:00</option>
+				<option>11:00</option>
+				<option>12:00</option>
+				<option>13:00</option>
+				<option>14:00</option>
+				<option>15:00</option>
+				<option>16:00</option>
+				<option>17:00</option>
+				<option>18:00</option>
+				<option>19:00</option>
+				<option>20:00</option>
+				<option>21:00</option>
+				<option>22:00</option>
+				<option>23:00</option>
+				<option>24:00</option>
+				</select>
+		</label>
+
+
+		<div style="padding:5px;" >
+		<button class="button button-block button-assertive" style="background-color: rgb(128,0,0);" onclick="createEvents()">Create Event</button>
+     </div>
+
+   </ion-content>
+</ion-pane>
+
+
+
+  </body>
+</html>
